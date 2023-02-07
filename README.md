@@ -8,8 +8,6 @@ terraform {
 
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIATWAZVG7Z2XIZGEWP"
-  secret_key = "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"
 }
 
 module "terraform-aws-apache-server" {
