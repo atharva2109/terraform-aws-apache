@@ -4,6 +4,11 @@ locals {
   }
 }
 
+data "aws_subnet_ids" "main" {
+  vpc_id = data.aws_vpc.main.id
+}
+
+
 data "aws_vpc" "main" {
   id = var.vpc_id
 }
@@ -60,6 +65,7 @@ resource "aws_instance" "web" {
   instance_type          = var.instance_type
   user_data              = data.template_file.user_data.rendered
   vpc_security_group_ids = [aws_security_group.main.id]
+  subnet_id              = tolist(data.aws_subnet_ids.main.ids)[0]
 
 
 
